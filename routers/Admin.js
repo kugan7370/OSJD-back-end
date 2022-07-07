@@ -1,15 +1,25 @@
 const express = require('express');
+const { addJersey, getJersey } = require('../Controller/Jerseys');
 
 const router = express.Router();
 
 //contraller path
-const { addJerseyCategory } = require('../Controller/JerseyCategory');
+const { addJerseyCategory, getCategory } = require('../Controller/JerseyCategory');
 const multer = require('../middleware/multer');
+const { getOrderedJersey } = require('../Controller/OrderJersey');
 
 
-// router.post('/signup', userSignup)
-// router.post('/signin', UserSignIn)
-router.post('/AddCategory', multer.single("image"), addJerseyCategory)
+//add category and get
+router.post('/addCategory', multer.single("image"), addJerseyCategory)
+router.get('/getCategory', getCategory)
+
+//ad jrsey and get
+router.post('/addJersey', multer.single("image"), addJersey)
+router.get('/getJersey', getJersey)
+
+//get ordered jersey
+router.get('/getOrderedJersey', getOrderedJersey)
+
 
 
 module.exports = router;
