@@ -1,7 +1,7 @@
 const User = require('../Model/userSignUp')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
-const env = require('dotenv').config()
+
 
 exports.userSignup = async (req, res) => {
     // get from post data
