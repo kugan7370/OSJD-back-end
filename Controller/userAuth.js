@@ -63,6 +63,7 @@ exports.UserSignIn = async (req, res) => {
 
     const getUser = await User.findOne({ email })
 
+
     if (!getUser) {
         return res.status(400).json({ message: 'invalid email' });
 
@@ -70,17 +71,21 @@ exports.UserSignIn = async (req, res) => {
     else {
         const isPasswordCorrect = await bcrypt.compare(Password, getUser.Password)
         if (isPasswordCorrect && getUser.role === "user") {
-            const token = jwt.sign({ _id: getUser._id, role: getUser.role }, 'OSJD', { expiresIn: '1h' });
-            const { username, email, role, } = getUser;
-            res.status(201).json({
-                token,
-                user: {
-                    username,
-                    email,
-                    role,
-
-                }
-            })
+            const token = jwt.sign({ _id: getUser._id, role: getUser.role }, 'OSJD', { expiresIn: '60 days' });
+            // const { username, email, role, } = getUser;
+            const { Password, ...otherDetails } = getUser._doc;
+            res.cookie("access_token", token, {
+                httpOnly: true,
+            }).status(201).json({ token, user: otherDetails })
+            //             res.status(201).json({
+            //                 token,
+            //                 user: {
+            //                     username,
+            //                     email,
+            //                     role,
+            // 
+            //                 }
+            //             })
         }
         else {
             return res.status(400).json({

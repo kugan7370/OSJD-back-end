@@ -17,7 +17,7 @@ exports.OrderJersey = async (req, res) => {
     const Order_Save = await Order_jersey.save()
     if (!Order_Save) {
         return res.status(400).json({
-            Message: 'message is something wrong'
+            message: 'message is something wrong'
         })
     }
     else {
@@ -37,7 +37,7 @@ exports.getOrderedJersey = async (req, res) => {
 
     if (!get_OrderJersey) {
         return res.status(200).json({
-            Message: 'No jersey available'
+            message: 'No jersey available'
         })
     }
     if (get_OrderJersey) {
@@ -45,7 +45,7 @@ exports.getOrderedJersey = async (req, res) => {
     } else {
 
         return res.status(400).json({
-            Message: 'message is something wrong'
+            message: 'message is something wrong'
         })
     }
 

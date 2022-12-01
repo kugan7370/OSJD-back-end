@@ -1,10 +1,12 @@
 const express = require('express');
+const { AddCarts, getCardDetails, removeCartItem } = require('../Controller/AddCart');
 const { OrderJersey } = require('../Controller/OrderJersey');
 
 const router = express.Router();
 
 //contraller path
 const { userSignup, UserSignIn } = require('../Controller/userAuth');
+const { requireSignin } = require('../middleware');
 
 
 //user auth
@@ -13,6 +15,11 @@ router.post('/signin', UserSignIn)
 
 //order jersey
 router.post('/orderJersey/:id', OrderJersey)
+
+//add cart
+router.post('/addCart', requireSignin, AddCarts)
+router.get('/getCart', requireSignin, getCardDetails)
+router.delete('/removeCart/:id', requireSignin, removeCartItem)
 
 
 
