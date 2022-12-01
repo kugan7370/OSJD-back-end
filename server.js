@@ -35,5 +35,5 @@ app.use('/admin', AdminPath);
 
 //port listen
 app.listen(8080, () => {
-    console.log('server connected');
+    console.log('server connected with http://localhost:8080');
 })

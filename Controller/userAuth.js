@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 
 exports.userSignup = async (req, res) => {
+
     // get from post data
     const { username, email, Password, ConfirmPassword } = req.body;
 
@@ -11,8 +12,9 @@ exports.userSignup = async (req, res) => {
     // check if already email available or not
     const existingUser = await User.findOne({ email })
     if (existingUser) {
+        console.log(existingUser);
         return res.status(400).json({
-            error: 'user Already exits'
+            message: 'user Already exits'
         })
     }
     else {
@@ -20,7 +22,7 @@ exports.userSignup = async (req, res) => {
         if (Password !== ConfirmPassword) {
 
             return res.status(400).json({
-                error: 'passwords should be same'
+                message: 'passwords should be same'
             })
         }
         else {
@@ -42,7 +44,7 @@ exports.userSignup = async (req, res) => {
             const result = await _user.save()
             if (!result) {
                 return res.status(400).json({
-                    error: 'message is something wrong'
+                    message: 'message is something wrong'
                 })
             }
             else {
