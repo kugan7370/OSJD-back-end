@@ -3,7 +3,6 @@ const Cart = require("../Model/Cart");
 
 
 exports.AddCarts = async (req, res) => {
-    console.log(req.body);
     const { jersey_id, size, price, jersey_name, jersey_number, jersey_image } = req.body;
 
     if (!size) {

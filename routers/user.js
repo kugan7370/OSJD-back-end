@@ -1,6 +1,7 @@
 const express = require('express');
 const { AddCarts, getCardDetails, removeCartItem } = require('../Controller/AddCart');
 const { OrderJersey } = require('../Controller/OrderJersey');
+const { stripePayment } = require('../Controller/Payment');
 
 const router = express.Router();
 
@@ -21,7 +22,8 @@ router.post('/addCart', requireSignin, AddCarts)
 router.get('/getCart', requireSignin, getCardDetails)
 router.delete('/removeCart/:id', requireSignin, removeCartItem)
 
-
+//payment
+router.post("/create-payment-intent", requireSignin, stripePayment);
 
 
 
