@@ -13,8 +13,8 @@ const jerseyOrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    number: {
-        type: Number,
+    jersey_number: {
+        type: String,
         required: true
     },
     phone: {
@@ -25,10 +25,34 @@ const jerseyOrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    shipped: {
+    is_shipped: {
         type: Boolean,
         default: false
-    }
+    },
+    zipCode: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    fullname: {
+        type: String,
+        required: true
+    },
+    user_id: {
+        type: String,
+        required: true
+    },
+    jersey_image: {
+        type: String,
+        required: true
+    },
 
 
 

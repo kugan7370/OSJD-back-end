@@ -14,12 +14,13 @@ router.post('/signup', userSignup)
 router.post('/signin', UserSignIn)
 
 //order jersey
-router.post('/orderJersey/:id', OrderJersey)
+router.post('/orderJersey', requireSignin, OrderJersey)
 
 //add cart
 router.post('/addCart', requireSignin, AddCarts)
 router.get('/getCart', requireSignin, getCardDetails)
 router.delete('/removeCart/:id', requireSignin, removeCartItem)
+
 
 
 
