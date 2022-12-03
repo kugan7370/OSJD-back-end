@@ -86,8 +86,8 @@ exports.stripePayment = async (req, res, next) => {
             ],
             line_items: line_items,
             mode: 'payment',
-            success_url: 'http://localhost:3000/',
-            cancel_url: 'http://localhost:3000/userOrderInfo',
+            success_url: 'http://localhost:3000/success',
+            cancel_url: 'http://localhost:3000/failed',
         });
         if (session.url) {
             console.log(session.url);
